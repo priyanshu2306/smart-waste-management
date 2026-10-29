@@ -4,6 +4,7 @@ from app.models import Admin
 app = create_app()
 
 with app.app_context():
+    db.create_all()
     try:
         from sqlalchemy import text
         db.session.execute(text("ALTER TABLE tbl_admin ADD COLUMN role VARCHAR(20) NOT NULL DEFAULT 'admin'"))
