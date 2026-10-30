@@ -198,19 +198,19 @@ Next, choose **one** of the following database options.
     CREATE DATABASE smart_waste_db;
     ```
 3.  **Create `.env` File:** In the project's root folder, create a file named `.env`.
-4.  **Generate a `SECRET_KEY`:** Run this in your terminal to get a secure key:
+4.  **Generate `SECRET_KEY` and `JWT_SECRET_KEY`:** Run this in your terminal to get both required keys:
     ```bash
     # (Make sure your venv is active)
-    python -c "import secrets; print(secrets.token_hex(32))"
+    python -c "import secrets; print(f'SECRET_KEY=\"{secrets.token_hex(32)}\"'); print(f'JWT_SECRET_KEY=\"{secrets.token_hex(32)}\"')"
     ```
-5.  **Configure `.env`:** Copy the template below into your `.env` file. Replace the credentials with your **local** MySQL info and the key you just generated.
+5.  **Configure `.env`:** Copy the template below into your `.env` file. Replace the credentials with your **local** MySQL info and the keys you just generated.
 
     ```dotenv
     # .env Template for Local Setup
     # Replace with your local MySQL username, password, and port (default is 3306)
     DATABASE_URL="mysql+pymysql://root:YourPassword@localhost:3306/smart_waste_db"
-    SECRET_KEY="PASTE_YOUR_GENERATED_32-CHARACTER_KEY_HERE"
-    JWT_SECRET_KEY="PASTE_ANOTHER_GENERATED_KEY_HERE"
+    SECRET_KEY="PASTE_YOUR_GENERATED_SECRET_KEY_HERE"
+    JWT_SECRET_KEY="PASTE_YOUR_GENERATED_JWT_SECRET_KEY_HERE"
     ```
 
 ---
@@ -227,10 +227,10 @@ Next, choose **one** of the following database options.
     - Expand "Additional configuration" and set the **"Initial database name"** to `smart_waste_db`.
     - Click **"Create database"** and wait 5-10 minutes for it to become "Available".
 2.  **Get Endpoint URL:** Once "Available," click the database name and copy its **Endpoint URL** from the "Connectivity & security" tab.
-3.  **Generate Keys:** Run this in your terminal to get secure keys:
+3.  **Generate Keys (`SECRET_KEY` & `JWT_SECRET_KEY`):** Run this in your terminal to get both required keys:
     ```bash
     # (Make sure your venv is active)
-    python -c "import secrets; print(secrets.token_hex(32))"
+    python -c "import secrets; print(f'SECRET_KEY=\"{secrets.token_hex(32)}\"'); print(f'JWT_SECRET_KEY=\"{secrets.token_hex(32)}\"')"
     ```
 4.  **Create `.env` File:** In the project's root folder, create a file named `.env`. Paste the template below, filling it with your **new AWS RDS credentials** and the keys you just generated.
 
@@ -238,8 +238,8 @@ Next, choose **one** of the following database options.
     # .env Template for AWS RDS Setup
     # Remember to URL-encode special characters in your password! (e.g., @ becomes %40)
     DATABASE_URL="mysql+pymysql://YOUR_RDS_USERNAME:YOUR_RDS_PASSWORD@YOUR_RDS_ENDPOINT_URL:3306/smart_waste_db"
-    SECRET_KEY="PASTE_YOUR_GENERATED_32-CHARACTER_KEY_HERE"
-    JWT_SECRET_KEY="PASTE_ANOTHER_GENERATED_KEY_HERE"
+    SECRET_KEY="PASTE_YOUR_GENERATED_SECRET_KEY_HERE"
+    JWT_SECRET_KEY="PASTE_YOUR_GENERATED_JWT_SECRET_KEY_HERE"
     ```
 
 ---
